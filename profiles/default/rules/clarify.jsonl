@@ -1,0 +1,1 @@
+{"id": "CLARIFY_IM_CALLING_TO", "intent": "clarify", "patterns": ["\\bi\\s*(?:am|'m)\\s+calling\\b(?!.*\\b(appointment|schedule|book|see\\s+dr|consult|new\\s+patient|follow\\s*up|visit)\\b)"], "response": "Sure — what can I help with today: scheduling an appointment, address/directions, prep instructions, results, billing, or a question about Dr. Shelby?"}

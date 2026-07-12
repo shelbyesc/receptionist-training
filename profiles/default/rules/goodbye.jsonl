@@ -1,0 +1,2 @@
+{"id": "edge_closure", "intent": "goodbye", "patterns": ["ok\\s+thanks", "thank\\s+you\\s+very\\s+much", "appreciate\\s+it"], "response": "You’re welcome. If you have any other questions, feel free to call us back."}
+{"id": "edge_finalize", "intent": "goodbye", "patterns": ["thank\\s+you", "\\bthanks\\b", "\\bbye\\b"], "response": "You’re welcome. Have a good day."}

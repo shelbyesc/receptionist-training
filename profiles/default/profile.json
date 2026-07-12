@@ -1,0 +1,99 @@
+{
+  "display_name": "Dr. Shelby's office",
+  "system_prompt": "You are 'Jay', the front desk assistant for Dr. Shelby's gastroenterology office. You are the LAST RESORT: the caller's question was not covered by the office's written rules or knowledge base, so you must be extremely careful.\n\nHARD RULES — never break these:\n1. NEVER invent facts. Do not state office hours, addresses, phone numbers, prices, insurance acceptance, appointment availability, or prep instructions unless the user themselves supplied them. If you don't know, say you don't know.\n2. NEVER give medical or clinical advice, interpret symptoms, or say whether something is normal or serious. If the caller describes symptoms, tell them to call the office to speak with clinical staff, or to call 911 / go to the ER if it may be an emergency.\n3. NEVER guess at a plausible-sounding answer. An honest 'I don't have that information' is always better than a confident wrong answer.\n\nWhen you don't know, say so briefly and offer the office email: shelbygimd@gmail.com.\n\nStyle: one or two short sentences, warm and professional, plain language. No lists, no preamble.",
+  "email_fallback": "This is a training demo. In the real system I'd ask you to email the office, and a staff member would reply.",
+  "asr_aliases": [
+    [
+      "\\bshall be\\b",
+      "shelby"
+    ],
+    [
+      "\\bshell be\\b",
+      "shelby"
+    ],
+    [
+      "\\bshellby\\b",
+      "shelby"
+    ],
+    [
+      "\\bdr shelly\\b",
+      "dr shelby"
+    ],
+    [
+      "\\bdr chelby\\b",
+      "dr shelby"
+    ]
+  ],
+  "day_start_hour": 9,
+  "day_end_hour": 17,
+  "horizon_days": 14,
+  "templates": {
+    "GREETING": "Hi! Thanks for calling Dr. Shelby's office. How can I help you today?",
+    "CLARIFY": "Sure — what can I help you with today?",
+    "CAL_ASK_DAY": "Which day works best for you?",
+    "CAL_DAY_REASK": "What day works best? (For example: Monday or Jan 19)",
+    "CAL_ASK_TIME": "Great — we have availability from 9:00 AM to 5:00 PM. What time works best for you?",
+    "CAL_TIME_REASK": "Thanks — what time between 9:00 AM and 5:00 PM works best? (For example: 2:15 PM)",
+    "CAL_NO_SLOTS": "Sorry — I don't see openings that day. Which other day works for you?",
+    "CAL_OFFER": "Here are the available times:\n{slots}\nReply with the number you'd like (for example: 1 or 2).",
+    "CAL_PICK_NUMBER": "Please reply with the number of the slot you want (for example: 1, 2, or 3).",
+    "CAL_ASK_NAME": "Great — I can hold that time. What is the patient's full name?",
+    "CAL_ASK_DOB": "Thank you. What is the patient's date of birth? You can say it as numbers — for example, four twenty-two nineteen seventy.",
+    "CAL_DOB_REASK": "Sorry, I didn't catch that. Please say the date of birth slowly as numbers — month, day, then year. For example: four, twenty-two, nineteen seventy.",
+    "CAL_BOOKED": "You're all set — your appointment has been booked. To update details (insurance/referral), please email shelbygimd@gmail.com.",
+    "CAL_SLOT_GONE": "Sorry — that slot is no longer available. Which day works best for you?",
+    "INSURANCE_FOLLOWUP": "Thank you — {insurance_name}. Coverage can vary by plan. Please email your question to shelbygimd@gmail.com, and my supervisor will email you the answer."
+  },
+  "backends": {
+    "intent": {
+      "url": "",
+      "min_conf": 0.6
+    },
+    "rag": {
+      "type": "local",
+      "min_similarity": 0.22
+    },
+    "llm": {
+      "url": "",
+      "model": ""
+    }
+  },
+  "reserved_for_calendar_backend": {
+    "provider_id": "DRSHELBY",
+    "note": "Reference id for a future real calendar integration."
+  },
+  "_kb_map_disabled": {
+    "_comment": "Intent-scoped RAG. Measured on this KB: it returns the SAME answer when the classifier is right, and a WORSE answer when it's wrong. Left off deliberately. Rename to 'kb_map' only if your KB grows large enough that global retrieval starts confusing topics.",
+    "prep": [
+      "qa_colonoscopy_prep_howto.txt",
+      "qa_colonoscopy_fasting.txt",
+      "qa_colonoscopy_meds.txt"
+    ],
+    "insurance": [
+      "qa_billing_insurance.txt",
+      "qa_office_policy.txt"
+    ],
+    "billing": [
+      "qa_billing_insurance.txt",
+      "qa_office_policy.txt"
+    ],
+    "results": [
+      "qa_colonoscopy_results.txt"
+    ],
+    "directions": [
+      "qa_office_info.txt",
+      "qa_directions.txt"
+    ]
+  },
+  "calendar": {
+    "type": "local",
+    "slot_minutes": 30,
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed"
+    ],
+    "seed_days": 28,
+    "path": "/tmp/calendar.json"
+  }
+}

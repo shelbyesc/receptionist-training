@@ -1,0 +1,7 @@
+# Deliberately light: no torch, no whisper, no kokoro.
+# The BROWSER does speech-to-text and text-to-speech, so Render only runs the
+# engine. This fits Render's free/starter instances.
+flask
+flask-cors
+requests
+scikit-learn

@@ -1,0 +1,1 @@
+{"id": "greeting_main", "intent": "greeting", "patterns": ["\\bhello\\b", "\\bhi\\b", "good\\s+morning", "good\\s+afternoon"], "response": "Thank you for calling Dr. Shelby’s office. How can I help you today?"}
